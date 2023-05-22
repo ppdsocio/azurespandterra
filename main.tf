@@ -14,7 +14,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_managed_disk" "example" {
-  name                 = "ppddiskspace"
+  name                 = "ppdagaindiskspace"
   location             = "centralindia"
   resource_group_name  = "azurespandterra"
   storage_account_type = "Standard_LRS"
