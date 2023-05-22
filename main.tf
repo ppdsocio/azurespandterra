@@ -1,20 +1,20 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "3.57.0"
     }
   }
 }
 
 provider "azurerm" {
-features {
-  
-}
+  features {
+
+  }
 }
 
 resource "azurerm_eventhub_namespace" "example" {
-  name                = "acceptanceTestEventHubNamespace"
+  name                = "PpdTanuEventHubNamespace"
   location            = "centralindia"
   resource_group_name = "azurespandterra"
   sku                 = "Standard"
