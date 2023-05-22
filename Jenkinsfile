@@ -9,10 +9,10 @@ pipeline {
 
     stage('connect to azure') {
       steps {
-        script {
+        // script {
           withCredentials([azureServicePrincipal('azure_sp_terraform')]) {
-            "az login --service-principal -u \${AZURE_CLIENT_ID} -p \${AZURE_CLIENT_SECRET} --tenant \${AZURE_TENANT_ID}"
-          }
+            sh "az login --service-principal -u \${AZURE_CLIENT_ID} -p \${AZURE_CLIENT_SECRET} --tenant \${AZURE_TENANT_ID}"
+          // }
         }
       }
     }
