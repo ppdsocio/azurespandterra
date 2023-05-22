@@ -10,13 +10,20 @@ pipeline {
     stage('connect to azure') {
       steps {
         script {
-          withCredentials([azureServicePrincipal('ppd-cred')]) {
+          withCredentials([azureServicePrincipal('azure_sp_terraform')]) {
             "az login --service-principal -u \${AZURE_CLIENT_ID} -p \${AZURE_CLIENT_SECRET} --tenant \${AZURE_TENANT_ID}"
           }
         }
       }
     }
 
+  stage('Terraform Plan') {
+          steps{
+                  sh "az account set --subscription=\"31e83b1c-e3a8-4b4e-8328-4afee07d7099\""
+                  sh "terraform plan -out terraform.tfplan;echo \$? > status"
+                  stash name: "terraform-plan", includes: "terraform.tfplan"
+              }
+          }
     stage('Terraform Plan') {
         steps{
                 sh 'terraform init'
