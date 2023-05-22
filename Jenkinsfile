@@ -16,16 +16,9 @@ pipeline {
         }
       }
     }
-
-  stage('Terraform Plan') {
-          steps{
-                  sh "az account set --subscription=\"31e83b1c-e3a8-4b4e-8328-4afee07d7099\""
-                  sh "terraform plan -out terraform.tfplan;echo \$? > status"
-                  stash name: "terraform-plan", includes: "terraform.tfplan"
-              }
-          }
     stage('Terraform Plan') {
         steps{
+                sh "az account set --subscription=\"31e83b1c-e3a8-4b4e-8328-4afee07d7099\""
                 sh 'terraform init'
                 sh "terraform plan -out terraform.tfplan;echo \$? > status"
                 stash name: "terraform-plan", includes: "terraform.tfplan"
